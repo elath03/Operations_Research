@@ -25,8 +25,6 @@ WORKDIR /var/fdb
 # Install FoundationDB Client Libraries
 ARG FDB_ADDITIONAL_VERSIONS="5.1.7"
 
-COPY download_multiversion_libraries.bash scripts/
-
 RUN curl $FDB_WEBSITE/downloads/$FDB_VERSION/linux/libfdb_c_$FDB_VERSION.so -o /usr/lib/libfdb_c.so && \
 	bash scripts/download_multiversion_libraries.bash $FDB_WEBSITE $FDB_ADDITIONAL_VERSIONS && \
 	rm -rf /mnt/website
@@ -48,4 +46,3 @@ ENV FDB_NETWORKING_MODE container
 ENV FDB_COORDINATOR ""
 ENV FDB_COORDINATOR_PORT 4500
 ENV FDB_CLUSTER_FILE_CONTENTS ""
-ENV FDB_PROCESS_CLASS unset
